@@ -30,7 +30,7 @@ function Home() {
 
   return (
     <>
-    {/* <div className='sticky z-[4000] top-0'>
+    <div className='sticky z-[4000] top-0'>
 
       <h1 className=' font-bold uppercase text-xl text-center py-5'>Listen to your favorite Artist</h1>
       <div className='px-6 flex items-center bg-white text-black rounded-full w-[40%] mx-auto h-14 mb-14 active:border-green-300'>
@@ -59,20 +59,20 @@ function Home() {
       :
       <>
         <div className="grid grid-cols-2 justify-center items-center lg:grid-cols-3 gap-4 p-4">
-    {Data?.items?.map((item, index) => { 
+    {data?.items?.map((item, index) => { 
       return <a href={`/components/Details/${item.snippet.channelTitle}&${item.snippet.channelId}`} className='rounded-2xl relative hover:scale-105 transition-all duration-200 ease-linear group' key={item.id.videoId}>
             <img className='w-full h-60 object-cover rounded-2xl z-50 gradient' src={item.snippet.thumbnails.medium.url} alt=''/>
             <div className='absolute top-0 left-0 inset-0 w-full h-full gradient rounded-2xl'></div>
             <AiOutlinePlayCircle className='bg-transparent absolute top-4 left-4 text-4xl z-[5000]'/>
             <p className='absolute bottom-4 left-4 text-white font-bold'>{item.snippet.channelTitle}</p> 
             {/* <button onClick={() => handleDownload(item.id.videoId)}>Download</button> */}
-          {/* </a> */} 
+          </a>
 
-{/* // })}
-//   </div> */}
-{/* // </> */}
-{/* // } */}
-{/* //   </div> */}
+})}
+  </div>
+</>
+}
+  </div>
     </>
     
   )
