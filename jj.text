@@ -1,0 +1,56 @@
+import { useEffect, useState } from 'react';
+import Data from '../src/data.json'
+
+import './App.css';
+
+function App() {
+  const getMusic = JSON.parse(localStorage.getItem('music'))
+  const [data, setData] = useState(null)
+  const [downloadMusic, setDownloadMusic] = useState([])
+  useEffect(() => {
+    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=mrbean&type=video&key=AIzaSyAKCuU-AdzF8oFYHtcecCOn3xIKm3RL1Uo')
+        .then(response => response.json())
+        .then(json => setData(json))
+        // setData(Data)
+    // setData(Data)
+  }, [])
+  const handleDownload = (itemId) => {
+    setDownloadMusic(prev => [...prev, itemId])
+    localStorage.setItem('music', JSON.stringify(downloadMusic))
+  }
+
+  return (
+    <>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 p-4">
+      {data?.items?.map((item, index) => { 
+  
+            return <div className='rounded-2xl' key={item.id.videoId}>
+            {/* <img className='w-80 rounded-lg' src={item.snippet.thumbnails.high.url}/> */}
+            <iframe className='rounded-2xl' title='hello' width="100%" height="315"
+                src={`https://www.youtube.com/embed/${item.id.videoId}`}>
+            </iframe>
+            <p>{item.snippet.channelTitle}</p> 
+            <button onClick={() => handleDownload(item.id.videoId)}>Download</button>
+          </div>
+    
+      })}
+    
+      </div>
+      <p>Downloaded Music</p>
+      <div>
+        {getMusic.map(music => {
+
+          return <div className='rounded-lg' key={music}>
+        {/* <img className='w-80 rounded-lg' src={item.snippet.thumbnails.high.url}/> */}
+        <iframe title='hello' width="650" height="315"
+            src={`https://www.youtube.com/embed/${music}`}>
+        </iframe>
+        <p>{music}</p> 
+        {/* <button onClick={() => handleDownload(item.id.videoId)}>Download</button> */}
+      </div>
+
+      })}
+        
+      </div>
+      </>
+  );
