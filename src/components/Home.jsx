@@ -33,13 +33,13 @@ function Home() {
     <div className='sticky z-[4000] top-0'>
 
       <h1 className=' font-bold uppercase text-xl text-center py-5'>Listen to your favorite Artist</h1>
-      <div className='px-6 flex items-center bg-white text-black rounded-full w-[40%] mx-auto h-14 mb-14 active:border-green-300'>
+      <div className='px-6 flex items-center bg-white text-black rounded-full w-[60%] lg:w-[40%] mx-auto h-14 mb-14 active:border-green-300'>
       <input onChange={(e) => setUserSearch(e.target.value)} className='w-full outline-none bg-transparent text-black' type="text" name="" id="" placeholder='Search Artist/any videos' />
       <BsSearch className='' onClick={() => handleSearch()}/>
       </div>
     </div>
-    <div className='fixed overflow-scroll top-10 left-4 flex flex-col gap-4 justify-center items-center'> 
-    <h1 className='flex'>Top 5 Artists</h1>
+    <div className='relative w-full lg:w-fit hidescroll h-60 lg:h-screen lg:fixed overflow-x-scroll lg:top-10 lg:left-4 flex lg:flex-col gap-4 lg:justify-center items-center'> 
+    <h1 className='flex p-4 absolute lg:top-0 -top-2 left-0 '>Top 5 Artists</h1>
     {ratingRappers.map((rapper, index) => {
       return <div onClick={() => handleSearch(rapper.name)} className='relative cursor-pointer'>
       <img alt='' className='w-20 h-20 rounded-full border border-green-300 object-cover mx-auto' src={rapper.pic}/>
@@ -50,7 +50,7 @@ function Home() {
  
 
     </div>
-    <div className='pl-40 overflow-scroll'>
+    <div className='lg:pl-40 mt-10 lg:mt-0 p-4 hidescroll overflow-scroll'>
     <h1 className='sticky top-0 z-[5000] text-green-200 font-bold tracking-widest'>Songs May Like</h1>
     {show ?
       <div className='w-full mx-auto h-screen bg-transparent'>
